@@ -36,8 +36,16 @@ class Classifier(object):
         """
 
 
-def lengh_array():
-    x, y = load_headlines.load_dataset()
+def load_shuffled_data():
+    x, y = load_dataset()
+    pairs_list = list(zip(x, y))
+    random.shuffle(pairs_list)
+    new_x, new_y = zip(*pairs_list)
+    return new_x, new_y
+
+
+def length_array():
+    x, y = load_shuffled_data()
     train_size = int(0.8 * len(x))
     res = []
     for headline in x:
@@ -47,8 +55,8 @@ def lengh_array():
     valid_set = res[train_size:]
     valid_label = y[train_size:]
     clf_SVC = svm.SVC()
-    clf_NBR = neighbors.KNeighborsClassifier(45, weights='distance')
-    clf_RFC = RandomForestClassifier(n_estimators=10)
+    clf_NBR = neighbors.KNeighborsClassifier(40)
+    clf_RFC = RandomForestClassifier(n_estimators=4)
     score_SVC = clf_SVC.fit(train_set, train_label).score(valid_set, valid_label)
     score_NBR = clf_NBR.fit(train_set, train_label).score(valid_set, valid_label)
     score_RFC = clf_RFC.fit(train_set, train_label).score(valid_set, valid_label)
@@ -56,14 +64,7 @@ def lengh_array():
     print("NBR:", score_NBR)
     print("RFC:", score_RFC)
 
-lengh_array()
-
-def load_shuffled_data():
-    x, y = load_dataset()
-    pairs_list = list(zip(x, y))
-    random.shuffle(pairs_list)
-    new_x, new_y = zip(*pairs_list)
-    return new_x, new_y
+length_array()
 
 
 def train_bag_of_words():
@@ -92,4 +93,4 @@ def train_bag_of_words():
     print(score)
 
 
-train_bag_of_words()
+# train_bag_of_words()
