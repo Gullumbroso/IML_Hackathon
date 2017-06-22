@@ -18,6 +18,7 @@ from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.linear_model import SGDClassifier, LogisticRegression, LogisticRegressionCV  # This is the svm
 import sklearn.svm as svm
+import sklearn.neighbors as nb
 from load_headlines import load_dataset
 
 

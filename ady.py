@@ -1,5 +1,6 @@
 from classifier import *
 import pandas as pd
+from sklearn.ensemble import RandomForestClassifier
 
 
 def length_array():
@@ -8,7 +9,7 @@ def length_array():
     for headline in x:
         res.append([len(headline)])
 
-    clf_NBR = neighbors.KNeighborsClassifier(40)
+    clf_NBR = nb.KNeighborsClassifier(40)
     clf_NBR.fit(res, y)
     return clf_NBR
 
