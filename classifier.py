@@ -42,7 +42,7 @@ class Classifier(object):
 
 
 def load_clean_dataset():
-    x, y = load_dataset()
+    x, y = load_dataset(['resources/haaretz.csv','resources/israelhayom.csv'])
     clean_x = []
     clean_y = []
     for i in range(len(x)):
@@ -62,7 +62,7 @@ def shuffle(x, y):
 
 
 def load_shuffled_data():
-    x, y = load_dataset()
+    x, y = load_clean_dataset()
     return shuffle(x, y)
 
 
@@ -144,7 +144,7 @@ def master_classifier():
     print("Forest: " + str(forest_score))
 
 
-master_classifier()
+# master_classifier()
 
 # x,y = load_dataset()
 # print(len(x), len(y))
