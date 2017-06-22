@@ -19,9 +19,7 @@ from sklearn.naive_bayes import MultinomialNB
 from sklearn.linear_model import SGDClassifier, LogisticRegression, LogisticRegressionCV  # This is the svm
 import sklearn.svm as svm
 from load_headlines import load_dataset
-import load_headlines
-from sklearn import svm, neighbors
-from sklearn.ensemble import RandomForestClassifier
+
 
 
 TRAIN_SET_SIZE = 0.8
@@ -65,54 +63,3 @@ def repetitive_test(clf, x, y, num_of_tests):
 
     return cul_score / num_of_tests
 
-
-def length_array():
-    x, y = load_shuffled_data()
-    train_size = int(0.8 * len(x))
-    res = []
-    for headline in x:
-        res.append([len(headline)])
-    train_set = res[:train_size]
-    train_label = y[:train_size]
-    valid_set = res[train_size:]
-    valid_label = y[train_size:]
-    clf_SVC = svm.SVC()
-    clf_NBR = neighbors.KNeighborsClassifier(40)
-    clf_RFC = RandomForestClassifier(n_estimators=4)
-    score_SVC = clf_SVC.fit(train_set, train_label).score(valid_set, valid_label)
-    score_NBR = clf_NBR.fit(train_set, train_label).score(valid_set, valid_label)
-    score_RFC = clf_RFC.fit(train_set, train_label).score(valid_set, valid_label)
-    print("SVC:", score_SVC)
-    print("NBR:", score_NBR)
-    print("RFC:", score_RFC)
-
-
-def train_google(language_client):
-    x, y = load_shuffled_data()
-    train_size = int(0.8 * len(x))
-    res = []
-    for headline in x:
-        document = language_client.document_from_text(headline)
-        sentiment = document.analyze_sentiment().sentiment
-        res.append([sentiment.score, sentiment.magnitude])
-
-    train_set = res[:train_size]
-    train_label = y[:train_size]
-    valid_set = res[train_size:]
-    valid_label = y[train_size:]
-
-    clf_SVC = svm.SVC()
-    clf_NBR = neighbors.KNeighborsClassifier(40)
-    clf_RFC = RandomForestClassifier(n_estimators=4)
-
-    score_SVC = clf_SVC.fit(train_set, train_label).score(valid_set, valid_label)
-    score_NBR = clf_NBR.fit(train_set, train_label).score(valid_set, valid_label)
-    score_RFC = clf_RFC.fit(train_set, train_label).score(valid_set, valid_label)
-
-    print("SVC:", score_SVC)
-    print("NBR:", score_NBR)
-    print("RFC:", score_RFC)
-
-
-# language_client = language.Client()
-# train_google(language_client)
