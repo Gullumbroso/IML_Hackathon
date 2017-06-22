@@ -53,10 +53,10 @@ def repetitive_test(clf, x, y, num_of_tests):
 
     # Divide into train set and test set
     train_size = int(math.floor(TRAIN_SET_SIZE * len(y)))
-    x_train = x[train_size:]
-    y_train = y[train_size:]
-    x_test = x[:train_size]
-    y_test = y[:train_size]
+    x_train = x[:train_size]
+    y_train = y[:train_size]
+    x_test = x[train_size:]
+    y_test = y[train_size:]
 
     cul_score = 0
     for i in range(num_of_tests):
