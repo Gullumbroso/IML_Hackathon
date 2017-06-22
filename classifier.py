@@ -21,7 +21,6 @@ import sklearn.svm as svm
 from load_headlines import load_dataset
 
 
-
 TRAIN_SET_SIZE = 0.8
 
 
@@ -51,10 +50,10 @@ def repetitive_test(clf, x, y, num_of_tests):
 
     # Divide into train set and test set
     train_size = int(math.floor(TRAIN_SET_SIZE * len(y)))
-    x_train = x[train_size:]
-    y_train = y[train_size:]
-    x_test = x[:train_size]
-    y_test = y[:train_size]
+    x_train = x[:train_size]
+    y_train = y[:train_size]
+    x_test = x[train_size:]
+    y_test = y[train_size:]
 
     cul_score = 0
     for i in range(num_of_tests):
@@ -63,3 +62,40 @@ def repetitive_test(clf, x, y, num_of_tests):
 
     return cul_score / num_of_tests
 
+
+def master_classifier():
+    # Get Data
+    x, y = load_shuffled_data()
+
+    # Divide into train set and test set
+    train_size = int(math.floor(TRAIN_SET_SIZE * len(y)))
+    x_train = x[:train_size]
+    y_train = y[:train_size]
+    x_test = x[train_size:]
+    y_test = y[train_size:]
+
+    # Get all the trained models
+    sc = sentiment_classifier(x_train, y_train)
+    lc = length_classifier(x_train, y_train)
+    bofc = bag_of_words_classifier(x_train, y_train)
+    pc = politition_classifier(x_train, y_train)
+
+    classifires = [sc, lc, bofc, pc]
+    predictions = []
+
+    for clf in classifires:
+        predictions.append(clf.predict(x))
+
+    pred_vecs = np.array(predictions).T
+
+    sgd = SGDClassifier()
+    linear_svc = svm.LinearSVC()
+
+    sgd_score = sgd.fit(pred_vecs, y_train).score(x_test, y_test)
+    svc_score = linear_svc.fit(pred_vecs, y_train).score(x_test, y_test)
+
+    # sgd_score = repetitive_test(sgd, x_test, y, 100)
+    # svc_score = repetitive_test(linear_svc, X_train_tfidf, y, 100)
+
+    print("SGD: " + str(sgd_score))
+    print("Linear SVC: " + str(svc_score))
