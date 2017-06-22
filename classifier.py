@@ -15,14 +15,13 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.datasets import load_files
 from sklearn import datasets
-from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
-from sklearn.naive_bayes import MultinomialNB
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.linear_model import SGDClassifier, LogisticRegression, LogisticRegressionCV  # This is the svm
-import sklearn.svm as svm
+from sklearn.linear_model import SGDClassifier, LogisticRegression, LogisticRegressionCV
 import sklearn.neighbors as nb
 from load_headlines import load_dataset
+import length_classifier as lc
 import polititians_classifier as pc
+import bag_of_words_classifier as bowc
 
 
 TRAIN_SET_SIZE = 0.6
@@ -101,37 +100,6 @@ def import_politic2():
     print("RFC:", score_RFC)
 
 
-def bag_of_words_classifier(x, y, test_x):
-
-    # Transform the titles into vectors
-    count_vect = CountVectorizer(ngram_range=(1, 2))
-    X_train_counts = count_vect.fit_transform(x)
-    tfidf_transformer = TfidfTransformer()
-    X_train_tfidf = tfidf_transformer.fit_transform(X_train_counts)
-
-    X_test_counts = count_vect.transform(test_x)
-    X_test_tfidf = tfidf_transformer.transform(X_test_counts)
-
-    linear_svc = svm.LinearSVC().fit(X_train_tfidf, y)
-    return linear_svc.predict(X_test_tfidf)
-
-
-def length_classifier(x, y, test_x):
-    x, y = load_shuffled_data()
-    res = []
-    test_res = []
-    for headline in x:
-        res.append([len(headline)])
-    for headline in test_x:
-        test_res.append([len(headline)])
-    clf_NBR = nb.KNeighborsClassifier(40)
-    clf_NBR.fit(res, y)
-    return clf_NBR.predict(test_res)
-
-
-
-
-
 def master_classifier():
     # Get Data
     x, y = load_shuffled_data()
@@ -148,24 +116,34 @@ def master_classifier():
 
     # Get all the trained models
     # sc = sentiment_classifier(x_train, y_train)
-    # lc_predictions = length_classifier(x_train, y_train, x_valid)
-    # print("Length model ready.")
-    # bofc_predictions = bag_of_words_classifier(x_train, y_train, x_valid)
-    # print("Bag of words model ready.")
+    len_class = lc.LengthClassifier(x_train, y_train)
+    print("Length model ready.")
+    bag_class = bowc.BagOfWordsClassifier(x_train, y_train)
+    print("Bag of words model ready.")
     poli_class = pc.PolititiansClassifier(x_train, y_train)
     print("Polititians model ready.")
 
-    predictions = np.array([poli_class.predict(x_valid)])
+    predictions = np.array([len_class.predict(x_valid), bag_class.predict(x_valid), poli_class.predict(x_valid)])
 
     pred_vecs = predictions.T
 
     sgd = SGDClassifier()
-    linear_svc = svm.LinearSVC()
 
     sgd.fit(pred_vecs, y_valid)
 
-    x_test_ready = poli_class.prepare_samples(x_test)
-    sgd_score = sgd.score(x_test_ready, y_test)
+    # x_test_ready_len = np.array(x_test)
+    # x_test_ready_bag = np.array(x_test)
+    # x_test_ready_poli = np.array(x_test)
+
+    len_prediction = len_class.predict(x_test)
+    bag_prediction = bag_class.predict(x_test)
+    poli_prediction = poli_class.predict(x_test)
+
+    test_vec = np.array([len_prediction,
+                         bag_prediction,
+                         poli_prediction]).T
+
+    sgd_score = sgd.score(test_vec, y_test)
 
     # svc_score = linear_svc.fit(pred_vecs, y_valid).score(x_test, y_test)
 
