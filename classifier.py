@@ -40,6 +40,19 @@ class Classifier(object):
         """
 
 
+def load_clean_dataset():
+    x, y = load_dataset()
+    clean_x = []
+    clean_y = []
+    for i in range(len(x)):
+        if x[i] != "Haaretz Cartoon":
+            clean_x.append(x[i])
+            clean_y.append(y[i])
+
+    return clean_x, clean_y
+
+
+
 def shuffle(x, y):
     pairs_list = list(zip(x, y))
     random.shuffle(pairs_list)
@@ -176,4 +189,9 @@ def master_classifier():
     # print("Linear SVC: " + str(svc_score))
 
 
-master_classifier()
+# master_classifier()
+
+x,y = load_dataset()
+print(len(x), len(y))
+a,b = load_clean_dataset()
+print(len(a), len(b))
