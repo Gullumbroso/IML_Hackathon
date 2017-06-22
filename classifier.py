@@ -5,7 +5,7 @@
 
             **  Headline Classifier  **
 
-Auther(s):
+Auther(s): Gilad Lumbroso, Ady Kaiser, Omer Alon
 
 ===================================================
 """
@@ -18,4 +18,4 @@ class Classifier(object):
         :param X: A list of length m containing the headlines' texts (strings)
         :return: y_hat - a binary vector of length m
         """
-    raise NotImplementedError("TODO: Implement this method by 12pm tomorrow!")
+    raise NotImplementedError("TODO: BOM!")
