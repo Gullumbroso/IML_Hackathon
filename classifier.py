@@ -17,11 +17,13 @@ from sklearn.datasets import load_files
 from sklearn import datasets
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import SGDClassifier, LogisticRegression, LogisticRegressionCV
+import sklearn.svm as svm
 import sklearn.neighbors as nb
 from load_headlines import load_dataset
 import length_classifier as lc
 import polititians_classifier as pc
 import bag_of_words_classifier as bowc
+from sklearn.ensemble import RandomForestClassifier
 
 
 TRAIN_SET_SIZE = 0.6
@@ -109,12 +111,14 @@ def master_classifier():
     pred_vecs = predictions.T
 
     sgd = SGDClassifier()
+    linear_svc = svm.LinearSVC()
+    neighbors = nb.KNeighborsClassifier(40)
+    forest = RandomForestClassifier(n_estimators=4)
 
     sgd.fit(pred_vecs, y_valid)
-
-    # x_test_ready_len = np.array(x_test)
-    # x_test_ready_bag = np.array(x_test)
-    # x_test_ready_poli = np.array(x_test)
+    linear_svc.fit(pred_vecs, y_valid)
+    neighbors.fit(pred_vecs, y_valid)
+    forest.fit(pred_vecs, y_valid)
 
     len_prediction = len_class.predict(x_test)
     bag_prediction = bag_class.predict(x_test)
@@ -125,6 +129,9 @@ def master_classifier():
                          poli_prediction]).T
 
     sgd_score = sgd.score(test_vec, y_test)
+    svc_score = linear_svc.score(test_vec, y_test)
+    neighbors_score = neighbors.score(test_vec, y_test)
+    forest_score = forest.score(test_vec, y_test)
 
     # svc_score = linear_svc.fit(pred_vecs, y_valid).score(x_test, y_test)
 
@@ -132,7 +139,9 @@ def master_classifier():
     # svc_score = repetitive_test(linear_svc, X_train_tfidf, y, 100)
 
     print("SGD: " + str(sgd_score))
-    # print("Linear SVC: " + str(svc_score))
+    print("Linear SVC: " + str(svc_score))
+    print("Neighbors: " + str(neighbors_score))
+    print("Forest: " + str(forest_score))
 
 
 master_classifier()
