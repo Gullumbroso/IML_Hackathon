@@ -11,7 +11,17 @@ Auther(s): Gilad Lumbroso, Ady Kaiser, Omer Alon
 """
 import math, random
 import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.datasets import load_files
+from sklearn import datasets
+from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
+from sklearn.naive_bayes import MultinomialNB
+from sklearn.linear_model import SGDClassifier, LogisticRegression, LogisticRegressionCV  # This is the svm
+import sklearn.svm as svm
 from load_headlines import load_dataset
+import load_headlines
+from sklearn import svm, neighbors
+from sklearn.ensemble import RandomForestClassifier
 
 
 TRAIN_SET_SIZE = 0.8
