@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "hackaboom-171513",
+  "private_key_id": "6b6ed0faf65a4e062bff5d336421ef40eef63dd4",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCrscTU1vhQRnIq\n8mj6u/6OAE34kRrSGduIbmbf5+x9aNL8+bFu9xW2uaO6rJDiNI44HoWszfJI5xqQ\ng4JV6EBDj1P3MMIO/8iSXYtFQTdB+/8OaaG/zvRtsd5UIztE9P6pACZ+UaMP7oOx\nJdcB10LdsPfSu2AQElFOzz3XqPD5PYGSBVKvMZPbVBwsyCGzsuvEDoFpY0DesesQ\n5RVoKJ7CuapGGBf2e9+JdLYyZ1LpNvb5LPinBDzCBBzW68GAq+BHDLTv9klrpADj\nMtsh8mvz68FgS7fE9tMi04WR4uVkdv/kt1EOZBlzvNK2ogLD37pWUK3UcuBjLl5b\nl7wIJ9S/AgMBAAECggEAERt7Y0GwKD98rK7Oqv0EVh3NpxC+PWT6LNPjSDgRpkVF\nkJNIjKft7/D7UWRUY1WdPhY8d4VluMHeMbwIxoqHrLOhSCYBkAEIeRz8/X+MA/UZ\n6tO3nCcAz9VDM9r20t4eabRsIXX86192m7YLgFF0hiZV6xdkcPWCSHn5zX011X+T\nKtrcPkMZcXqNizZ3zHXxdCTuL4fZbP0hWGTo74EMG6Z8t+Xd0Z5/TCNCNMAEBelR\nqr8S+jSJKOOWGNQ75WeBZVaVQoGEOL7RpDjKbL/0owJqZO0pqYmG6QXxbGfpiLx2\nC5iQ+NrRcziD0CEbyBtHMF7b3U6PkE3EKOUZhwqKcQKBgQDycQ7Qq6ZGfQ5vhump\nmkf3TcM4gU1Q7NqoP36bR/9jKZPyfhJFNvxjDMlOGjxbKkGV554cwiLuZ1+AuzLp\nX1Y6YljVUiPsTb/+6ps0PmKTMNYck8vWdgmULojcGjl6IO1guSF6cEhNNFOA6FTk\n9m5cJSrkfR9O5p9oxQPe2V2AOwKBgQC1S9nEiaWAd5kPSya4l5XY2/kt6pfmMHdv\nIwMpRXvPmp0eKo7P3fxugW48Q6zbweKoBlEVtWJjtBOYkE0Bdw6ocp7qUMuXmS9D\nepMoR3AdpO9TcBMbJT7tx/VCRQlkVqtOaI/vftUP/Xjh0J4JSmHzBd1oRC2p1lxy\nYwO8Ft+ZTQKBgA346BKsodOUJ33T96l3o8gj6ilagls0m1Fw/1nxp01OuyERlPn6\nNkd7GCrxJiNW5xq9k4YyxhKZUI65uzBp9y08N8RrjHh07qjBWpqDMekrultBRVEh\n0mGA4RBWTpO0TBnz8XL9/5y7dEiMmz/q1+dlmPg8Ic7JScye9h8kxde7AoGAYkBa\nI14peEbYh2ZF9NIJ3n3QO+cgLRrlDzDdXLeQUsFLFvcfcF2wmT7BvB09B9e6ey75\nMJedW8VSvWKuqPWZ1wZPQ1NIEr9s0tgR+klE5HvnS8O4RwTXZsvwCdsaLOufaR3X\nq4aD92d55H9Htmc+UBNEm2YfjSRj84Xfl0aaJR0CgYEAyfkTSb69NE28bSvd9cUS\nYakvZQD3plDP87OtcBY39Rwmn+05aJ7diNaYO6NAVi5JblepuCQikmibEm0h5H3G\ngFMB8x0+bpUTwfPrl1tPtwLEPPuB8o4wxGMGiEuhbp+6U70sx4zeptvgu/hKpzrx\nOUQdABkahn4W3GNQlq9FXPE=\n-----END PRIVATE KEY-----\n",
+  "client_email": "hackaboom@hackaboom-171513.iam.gserviceaccount.com",
+  "client_id": "118373651545164458865",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/hackaboom%40hackaboom-171513.iam.gserviceaccount.com"
+}
