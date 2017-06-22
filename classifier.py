@@ -10,6 +10,7 @@ Auther(s): Gilad Lumbroso, Ady Kaiser, Omer Alon
 ===================================================
 """
 import math, random
+import numpy as np
 from load_headlines import load_dataset
 
 
