@@ -35,7 +35,8 @@ class Classifier(object):
         pass
 
 
-def shuffle_data(x, y):
+def load_shuffled_data():
+    x, y = load_dataset()
     pairs_list = list(zip(x, y))
     random.shuffle(pairs_list)
     new_x, new_y = zip(*pairs_list)
@@ -44,8 +45,7 @@ def shuffle_data(x, y):
 
 def train_bag_of_words():
     # Get the data
-    samples, labels = load_dataset()
-
+    samples, labels = load_shuffled_data()
     train_size = int(math.floor(TRAIN_SET_SIZE * len(samples)))
     x_train = samples[train_size:]
     y_train = labels[train_size:]
