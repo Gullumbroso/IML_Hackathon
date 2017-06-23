@@ -187,8 +187,8 @@ def master_classifier():
 
     sgd = SGDClassifier()
     linear_svc = svm.LinearSVC()
-    neighbors = nb.KNeighborsClassifier(40)
-    forest = RandomForestClassifier(n_estimators=4)
+    neighbors = nb.KNeighborsClassifier(40, weights='distance', algorithm='kd_tree')
+    forest = RandomForestClassifier(n_estimators=10)
 
     # learn grida
     sgd.fit(pred_vecs, y_valid)

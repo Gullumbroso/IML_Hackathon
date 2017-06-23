@@ -1,5 +1,6 @@
 from sklearn.ensemble import RandomForestClassifier
 import sklearn.neighbors as nb
+from sklearn.svm import SVC
 
 
 class LengthClassifier:
