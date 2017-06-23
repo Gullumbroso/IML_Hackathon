@@ -1,0 +1,10 @@
+bag_of_words_classifier.py - a class that classifies the data according to the words in it.
+classifier.py - the main class which is responsible of connecting all the different classifiers
+and giving as an output the prediction.
+dot_classifier.py - a class that classifies the data according to the amount of dots in it.
+length_classifier.py - a class that classifies the data according to the length of the headline
+load_headlines.py - the given file which loads all the headlines from the csv files.
+polititians_classifier.py - a class that classifies the data according to the amount
+of polititaion in it.
+sentiment_classifier.py - a class that classifies the data according to google analysis of the
+amount of sentiment in it.
